@@ -1,0 +1,26 @@
+# Core compilation auxiliary files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# Package-specific files
+*.bcf
+*.run.xml
+
+# Build artifact (uncomment to ignore compiled PDF)
+# *.pdf
