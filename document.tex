@@ -1,0 +1,85 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+
+\geometry{top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm}
+\pagestyle{empty}
+
+\begin{document}
+	
+	\begin{center}
+		{\Large \textbf{Formulario: Ecuaciones Diferenciales Lineales de Orden Superior}}
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\section*{1. Solución General}
+	\[
+	y = y_c + y_p
+	\]
+	\begin{itemize}
+		\item $y_c$: Solución homogénea ($R(x) = 0$).
+		\item $y_p$: Solución particular debida a $R(x)$.
+	\end{itemize}
+	
+	\hrulefill
+	
+	\section*{2. Solución Complementaria $y_c$}
+	Se sustituyen las derivadas por potencias de $m$ ($y'' \to m^2$, $y' \to m$, $y \to 1$) e igualamos a 0.
+	
+	\begin{itemize}
+		\item \textbf{Caso 1: Raíces reales y distintas ($m_1 \neq m_2 \neq \dots \neq m_n$)}
+		\[
+		y_c = C_1 e^{m_1 x} + C_2 e^{m_2 x} + \dots + C_n e^{m_n x}
+		\]
+		
+		\item \textbf{Caso 2: Raíces reales repetidas ($m_1 = m_2 = \dots = m$)}
+		\[
+		y_c = C_1 e^{m x} + C_2 x e^{m x} + C_3 x^2 e^{m x} + \dots + C_n x^{n-1} e^{m x}
+		\]
+		
+		\item \textbf{Caso 3: Raíces complejas conjugadas ($m = \alpha \pm \beta i$)}
+		\[
+		y_c = e^{\alpha x} \left( C_1 \cos(\beta x) + C_2 \sin(\beta x) \right)
+		\]
+		\textit{Si $\alpha = 0$ ($m = \pm \beta i$): $y_c = C_1 \cos(\beta x) + C_2 \sin(\beta x)$.}
+		
+		\item \textbf{Caso 4: Raíces complejas conjugadas repetidas ($k$ veces)}
+		\[
+		y_c = e^{\alpha x} \left[ (C_1 + C_2 x + \dots)\cos(\beta x) + (C_3 + C_4 x + \dots)\sin(\beta x) \right]
+		\]
+	\end{itemize}
+	
+	\hrulefill
+	
+	
+	
+	\hrulefill
+	
+	\section*{3. Solución Particular $y_p$ (Coeficientes Indeterminados)}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Término $R(x)$} & \textbf{Forma propuesta para $y_p(x)$} \\
+			\midrule
+			Constante: $k$ & $C_n$ \\
+			Lineal: $a x + b$ & $C_n x + C_{n+1}$ \\
+			Cuadrático: $a x^2 + b x + c$ & $C_n x^2 + C_{n+1} x + C_{n+2}$ \\
+			Exponencial: $k e^{r x}$ & $C_n e^{r x}$ \\
+			Trigonométrica: $\sin(k x)$ o $\cos(k x)$ & $C_n \cos(k x) + C_{n+1} \sin(k x)$ \\
+			Polinomio $\times$ Exponencial: $(a x + b)e^{r x}$ & $(C_n x + C_{n+1})e^{r x}$ \\
+			Exponencial $\times$ Trigonométrica: $e^{r x}\cos(k x)$ & $e^{r x}\left(C_n \cos(k x) + C_{n+1} \sin(k x)\right)$ \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\vspace{0.2cm}
+	\noindent\textbf{Regla de modificación (duplicidad):} Si algún sumando en la propuesta de $y_p$ ya está contenido en $y_c$, se multiplica toda la familia de ese término por $x$ (o $x^s$, donde $s$ es la menor potencia entera positiva) hasta que deje de duplicarse con $y_c$.
+	
+\end{document}
