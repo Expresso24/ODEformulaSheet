@@ -4,10 +4,15 @@
 \usepackage{amsmath,amssymb}
 \usepackage{geometry}
 \usepackage{array}
+\usepackage[table]{xcolor}
 \usepackage{booktabs}
 
 \geometry{top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm}
 \pagestyle{empty}
+
+
+\definecolor{tableheader}{RGB}{30, 65, 110}   % Azul elegante
+\definecolor{rowgray}{RGB}{245, 247, 250}     % Gris muy tenue
 
 \begin{document}
 	
@@ -54,30 +59,45 @@
 		\]
 	\end{itemize}
 	
-	\hrulefill
 	
-	
-	
-	\hrulefill
+	\newpage
 	
 	\section*{3. Solución Particular $y_p$ (Coeficientes Indeterminados)}
 	
-	\begin{center}
-		\renewcommand{\arraystretch}{1.3}
-		\begin{tabular}{ll}
-			\toprule
-			\textbf{Término $R(x)$} & \textbf{Forma propuesta para $y_p(x)$} \\
+	\begin{table}[ht]
+		\centering
+		\renewcommand{\arraystretch}{1.45}
+		\setlength{\tabcolsep}{12pt}
+		\begin{tabular}{r >{$}l<{$} >{$}l<{$}}
+			\rowcolor{tableheader}
+			\multicolumn{1}{c}{\bfseries\color{white}\#} & 
+			\multicolumn{1}{l}{\bfseries\color{white} Término no homogéneo $g(x)$} & 
+			\multicolumn{1}{l}{\bfseries\color{white} Forma propuesta para $y_p$} \\
 			\midrule
-			Constante: $k$ & $C_n$ \\
-			Lineal: $a x + b$ & $C_n x + C_{n+1}$ \\
-			Cuadrático: $a x^2 + b x + c$ & $C_n x^2 + C_{n+1} x + C_{n+2}$ \\
-			Exponencial: $k e^{r x}$ & $C_n e^{r x}$ \\
-			Trigonométrica: $\sin(k x)$ o $\cos(k x)$ & $C_n \cos(k x) + C_{n+1} \sin(k x)$ \\
-			Polinomio $\times$ Exponencial: $(a x + b)e^{r x}$ & $(C_n x + C_{n+1})e^{r x}$ \\
-			Exponencial $\times$ Trigonométrica: $e^{r x}\cos(k x)$ & $e^{r x}\left(C_n \cos(k x) + C_{n+1} \sin(k x)\right)$ \\
+			1 & k \text{ (constante)} & C_n \\
+			\rowcolor{rowgray}
+			2 & k_1 x + k_0 & C_n x + C_{n+1} \\
+			3 & k_2 x^2 + k_1 x + k_0 & C_n x^2 + C_{n+1} x + C_{n+2} \\
+			\rowcolor{rowgray}
+			4 & k_3 x^3 + k_2 x^2 + k_1 x + k_0 & C_n x^3 + C_{n+1} x^2 + C_{n+2} x + C_{n+3} \\
+			5 & \sin(\beta x) & C_n \cos(\beta x) + C_{n+1} \sin(\beta x) \\
+			\rowcolor{rowgray}
+			6 & \cos(\beta x) & C_n \cos(\beta x) + C_{n+1} \sin(\beta x) \\
+			7 & e^{\alpha x} & C_n e^{\alpha x} \\
+			\rowcolor{rowgray}
+			8 & (k_1 x + k_0)e^{\alpha x} & (C_n x + C_{n+1})e^{\alpha x} \\
+			9 & (k_2 x^2 + k_1 x + k_0)e^{\alpha x} & (C_n x^2 + C_{n+1} x + C_{n+2})e^{\alpha x} \\
+			\rowcolor{rowgray}
+			10 & e^{\alpha x} \sin(\beta x) & e^{\alpha x}(C_n \cos(\beta x) + C_{n+1} \sin(\beta x)) \\
+			11 & (k_2 x^2 + k_1 x + k_0)\sin(\beta x) & (C_n x^2 + C_{n+1} x + C_{n+2})\cos(\beta x) + (C_{n+3} x^2 + C_{n+4} x + C_{n+5})\sin(\beta x) \\
+			\rowcolor{rowgray}
+			12 & (k_1 x + k_0) e^{\alpha x} \cos(\beta x) & e^{\alpha x}\big[(C_n x + C_{n+1})\cos(\beta x) + (C_{n+2} x + C_{n+3})\sin(\beta x)\big] \\
 			\bottomrule
 		\end{tabular}
-	\end{center}
+		\caption{Formas de la solución particular $y_p$ para coeficientes indeterminados.}
+		\label{tab:coeficientes_indeterminados}
+	\end{table}
+	
 	
 	\vspace{0.2cm}
 	\noindent\textbf{Regla de modificación (duplicidad):} Si algún sumando en la propuesta de $y_p$ ya está contenido en $y_c$, se multiplica toda la familia de ese término por $x$ (o $x^s$, donde $s$ es la menor potencia entera positiva) hasta que deje de duplicarse con $y_c$.
