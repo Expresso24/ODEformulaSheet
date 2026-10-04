@@ -64,6 +64,16 @@
 	
 	\section*{3. Solución Particular $y_p$ (Coeficientes Indeterminados)}
 	
+	Para proponer la forma de $y_p$ a partir de la función $R(x)$, se definen las siguientes variables:
+	\begin{itemize}
+		\setlength{\itemsep}{1pt}
+		\setlength{\parskip}{0pt}
+		\item $k_0, k_1, k_2, \dots$: Números o coeficientes que acompañan a las $x$ en el polinomio de $R(x)$ ($k_0$ es el número solo).
+		\item $\alpha$: Número que multiplica a la $x$ dentro del exponente ($e^{\alpha x}$).
+		\item $\beta$: Número dentro del argumento del seno o coseno ($\sin \beta x$, $\cos \beta x$).
+		\item $C_n, C_{n+1}, \dots$: Constantes por encontrar para armar $y_p$ (el índice $n$ continúa después de las $C$ usadas en $y_c$).
+	\end{itemize}
+	
 	\begin{table}[ht]
 		\centering
 		\renewcommand{\arraystretch}{1.45}
@@ -71,7 +81,7 @@
 		\begin{tabular}{r >{$}l<{$} >{$}l<{$}}
 			\rowcolor{tableheader}
 			\multicolumn{1}{c}{\bfseries\color{white}\#} & 
-			\multicolumn{1}{l}{\bfseries\color{white} Término no homogéneo $g(x)$} & 
+			\multicolumn{1}{l}{\bfseries\color{white} Término no homogéneo $R(x)$} & 
 			\multicolumn{1}{l}{\bfseries\color{white} Forma propuesta para $y_p$} \\
 			\midrule
 			1 & k \text{ (constante)} & C_n \\
@@ -98,8 +108,12 @@
 		\label{tab:coeficientes_indeterminados}
 	\end{table}
 	
-	
 	\vspace{0.2cm}
-	\noindent\textbf{Regla de modificación (duplicidad):} Si algún sumando en la propuesta de $y_p$ ya está contenido en $y_c$, se multiplica toda la familia de ese término por $x$ (o $x^s$, donde $s$ es la menor potencia entera positiva) hasta que deje de duplicarse con $y_c$.
+	\noindent\textbf{Regla de duplicidad:} Si algún término de $y_p$ ya aparece en la solución complementaria $y_c$, multiplica toda la familia de ese término por $x$ (o $x^2$, $x^s$) hasta eliminar la repetición.\\
+	
+	
+	\textit{Ejemplo:} Si $y_c = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$ y $R(x) = e^{\alpha x}\cos\beta x$:  
+	$\implies$ La propuesta estándar falla por duplicidad, por lo que se ajusta a:  
+	$y_p = x e^{\alpha x}\big(C_n\cos\beta x + C_{n+1}\sin\beta x\big)$.
 	
 \end{document}
