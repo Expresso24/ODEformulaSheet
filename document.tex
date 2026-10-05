@@ -17,7 +17,7 @@
 \definecolor{notablue}{RGB}{30, 100, 180} 
 
 \begin{document}
-	
+		
 	\begin{center}
 		{\Large \textbf{Formulario: Ecuaciones Diferenciales Lineales de Orden Superior}}
 	\end{center}
@@ -129,58 +129,30 @@
 		\caption{Formas de la solución particular $y_p$ para coeficientes indeterminados.}
 		\label{tab:coeficientes_indeterminados}
 	\end{table}
-
+	
 	\begin{tcolorbox}[
 		enhanced,
-		colback=notablue!6,          % Fondo muy suave
-		colframe=notablue,          % Color del borde izquierdo
-		arc=3pt,                    % Esquinas sutilmente redondeadas
-		boxrule=0pt,                % Sin borde alrededor...
-		leftrule=3.5pt,             % ...excepto una barra lateral izquierda
-		top=4pt, bottom=4pt,        % Altura vertical compacta
-		left=7pt, right=7pt,
-		before skip=6pt, after skip=6pt
+		colback=notablue!6,
+		colframe=notablue,
+		arc=2pt,
+		boxrule=0pt,
+		leftrule=3pt,
+		top=3pt, bottom=3pt,
+		left=6pt, right=6pt,
+		before skip=3pt, after skip=3pt
 		]
-		\small
-		\noindent\textbf{\color{notablue}Regla de duplicidad (Multiplicación por $x^s$):} Si algún término de $y_p$ ya aparece en la solución complementaria $y_c$, multiplica toda la familia de ese término por $x$ (o $x^2, \dots, x^s$) hasta eliminar cualquier repetición.
-		
-		\vspace{0.15cm}
-		\noindent\textit{Ejemplo:} Si $y_c = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$ y $R(x) = e^{\alpha x}\cos\beta x$:
-		\[
-		\implies y_p = x e^{\alpha x}\big(C_n\cos\beta x + C_{n+1}\sin\beta x\big)
-		\]
+		\footnotesize
+		\textbf{\color{notablue}Regla de duplicidad ($x^s$):} Si un término de $y_p$ está contenido en $y_c$, multiplíquese por $x^s$ hasta eliminar redundancias. \\
+		\textit{Caso:} Si $y_c$ contiene $e^{\alpha x}\cos\beta x$ y $R(x)=e^{\alpha x}\cos\beta x \implies y_p = x e^{\alpha x}(C_n\cos\beta x + C_{n+1}\sin\beta x)$.
 	\end{tcolorbox}
 	
-	\vspace{0.2cm}
-	\noindent\textbf{Procedimiento de cálculo para $y_p$:}
-	\begin{enumerate}
-		\item \textbf{Derivar según el orden:} Derivar la propuesta ajustada $y_p$ sucesivamente tantas veces como lo indique el orden $n$ de la ecuación diferencial, calculando:
-		\[
-		y_p', \quad y_p'', \quad y_p''', \quad \dots, \quad y_p^{(n)}
-		\]
-		\item \textbf{Sustituir y formar el sistema:} Reemplazar $y_p$ y sus derivadas en el lado izquierdo de la ecuación diferencial original:
-		\[
-		a_n y_p^{(n)} + a_{n-1} y_p^{(n-1)} + \dots + a_1 y_p' + a_0 y_p = R(x)
-		\]
-		Agrupar los términos semejantes (potencias de $x$, exponenciales, senos y cosenos) e igualar sus coeficientes con los de $R(x)$ para resolver el sistema lineal y obtener los valores numéricos de las constantes ($C_n, C_{n+1}, \dots$).
-	\end{enumerate}
 	
-	\vspace{0.2cm}
-	\section*{4. Solución General Completa}
-	Una vez obtenidas la solución complementaria $y_c$ y la solución particular $y_p$, se ensambla la solución general sumando ambas expresiones:
-	\[
-	y = y_c + y_p
-	\]
-	\begin{itemize}
-		\item $y_c = C_1 y_1 + C_2 y_2 + \dots + C_n y_n$ (aporta las $n$ constantes arbitrarias).
-		\item $y_p$ (solución libre de constantes arbitrarias debida a $R(x)$).
-	\end{itemize}
 	
 	\newpage
 
 	\section*{4. Variación de Parámetros}
 	
-	\subsection*{Paso 1: Forma estándar de $y''$}
+	\subsection*{Forma estándar de $y''$}
 	Para usar este método, la derivada mayor ($y''$) \textbf{debe estar con coeficiente $=$ 1}. Si tiene algún otro número o funcion multiplicandose, se divide toda la ecuación entre ese término:
 	
 	\[
@@ -189,7 +161,7 @@
 	\underbrace{\mathbf{1}y'' + P(x)y' + Q(x)y}_{\text{Derivada mayor con coeficiente 1}} = \underbrace{R(x)}_{\substack{\frac{g(x)}{a_2(x)} \\ \text{(Término para el sistema)}}}
 	\]
 	
-	\subsection*{Paso 2: Propuesta parametrica}
+	\subsection*{Propuesta parametrica}
 	A diferencia del método de coeficientes indeterminados, en variación de parámetros \textbf{no se propone una función externa arbitraria} para $y_p$. La propuesta conserva exactamente la base de la solución complementaria:
 	\[
 	y_c = \underbrace{C_1}_{\text{constante}} y_1(x) \;+\; \underbrace{C_2}_{\text{constante}} y_2(x)
@@ -204,7 +176,7 @@
 	\]
 
 	
-	\subsection*{Paso 3: Determinación de los parámetros $A(x)$ y $B(x)$}
+	\subsection*{Determinación de los parámetros $A(x)$ y $B(x)$}
 	El Wronskiano de la base fundamental $\{y_1, y_2\}$ es:
 	\vspace{0.5cm}
 	\[
@@ -224,7 +196,7 @@
 	
 	
 	
-	\subsection*{Paso 4: Solución particular y general}
+	\subsection*{Solución particular y general}
 	La solución particular se ensambla como:
 	\[
 	y_p = A(x) y_1 + B(x) y_2

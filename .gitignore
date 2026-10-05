@@ -23,4 +23,4 @@
 *.run.xml
 
 # Build artifact (uncomment to ignore compiled PDF)
-# *.pdf
+*.pdf
