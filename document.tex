@@ -24,7 +24,7 @@
 	
 	\vspace{0.3cm}
 	
-	\section*{0. Forma Canónica Requerida}
+	\section*{Ecuaciones Lineales Homogeneas}
 	Este método aplica \textbf{únicamente} a ecuaciones lineales homogéneas con coeficientes constantes:
 	\[
 	\underbrace{a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_2 y'' + a_1 y' + a_0 y}_{\text{Ecuación diferencial lineal}} = \underbrace{0}_{R(x) = 0}
@@ -33,7 +33,7 @@
 	
 	
 	
-	\section*{1. Solución General}
+	\section*{Estructura de la Solución Homogénea ($y_c$)}
 	Para una ecuación diferencial lineal homogénea de orden $n$:
 	\[
 	y = y_h = C_1 y_1 + C_2 y_2 + C_3 y_3 + C_4 y_4 + \dots + C_n y_n
@@ -45,7 +45,7 @@
 	
 	\hrulefill
 	
-	\section*{2. Solución Complementaria $y_c$}
+	\section*{Polinomio Auxiliar y Solución Complementaria $y_c$}
 	
 	Se resuelve la ecuación auxiliar o característica sustituyendo las derivadas por potencias de $m$ ($y'' \to m^2$, $y' \to m$, $y \to 1$) e igualando a cero ($a_n m^n + \dots + a_1 m + a_0 = 0$).
 	
@@ -78,9 +78,7 @@
 	
 	\newpage
 	
-	\section*{3. Solución Particular $y_p$ (Coeficientes Indeterminados)}
-	
-	\subsection*{Forma Canónica No Homogénea}
+	\section*{Ecuaciones Lineales No Homogéneas (Orden $n$)}
 	Ecuación diferencial lineal con coeficientes constantes ($a_i \in \mathbb{R},\; a_n \neq 0$):
 	\[
 	\underbrace{a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_2 y'' + a_1 y' + a_0 y}_{\text{Parte lineal homogénea}} = \underbrace{R(x)}_{\substack{\text{Término no homogéneo} \\ (R(x) \neq 0)}}
@@ -146,11 +144,85 @@
 		\textit{Caso:} Si $y_c$ contiene $e^{\alpha x}\cos\beta x$ y $R(x)=e^{\alpha x}\cos\beta x \implies y_p = x e^{\alpha x}(C_n\cos\beta x + C_{n+1}\sin\beta x)$.
 	\end{tcolorbox}
 	
-	
+	%
+	%
+	%
+	%
+	\begin{tcolorbox}[
+		enhanced,
+		colback=white,
+		colframe=tableheader,
+		arc=4pt,
+		boxrule=1pt,
+		top=6pt, bottom=6pt, left=8pt, right=8pt,
+		before skip=6pt, after skip=4pt,
+		title={\bfseries\color{white}\footnotesize ESTRUCTURA DE SOLUCION Y OPERADORES},
+		coltitle=white,
+		colbacktitle=tableheader,
+		attach boxed title to top left={yshift=-2mm, xshift=4mm},
+		boxed title style={arc=2pt, boxrule=0pt}
+		]
+		\vspace{0.12cm}
+		
+		% Paso 1: Derivadas
+		\begin{tcolorbox}[
+			colback=gray!5, colframe=gray!60,
+			arc=2.5pt, boxrule=0.6pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+			]
+			\footnotesize
+			\textbf{Derivadas Sucesivas del Operador}
+			\vspace{0.04cm}
+			\par\scriptsize
+			Derivar la propuesta $y_p$ tantas veces como lo indique el orden $n$ de la ecuación diferencial:
+			\[
+			y_p', \quad y_p'', \quad y_p''', \quad \dots, \quad y_p^{(n)}
+			\]
+			\textit{Aplicar con cuidado las reglas del producto y de la cadena.}
+		\end{tcolorbox}
+		
+		\vspace{0.12cm}
+		
+		% Paso 2: Sustitución y Coeficientes
+		\begin{tcolorbox}[
+			colback=gray!5, colframe=gray!60,
+			arc=2.5pt, boxrule=0.6pt, left=6pt, right=6pt, top=3pt, bottom=3pt
+			]
+			\footnotesize
+			\textbf{Sustitución y Cálculo de Coeficientes}
+			\vspace{0.04cm}
+			\par\scriptsize
+			Sustituir $y_p, \dots, y_p^{(n)}$ en el lado izquierdo:
+			\par\centering{\scriptsize $a_n y_p^{(n)} + \dots + a_1 y_p' + a_0 y_p = R(x)$}\par
+			\vspace{-0.25cm}
+			\begin{itemize}
+				\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}\setlength{\leftmargini}{10pt}
+				\item \textbf{Agrupar:} Factorizar por funciones semejantes: $(\dots)x^k + (\dots)e^{\alpha x} + (\dots)\cos\beta x + (\dots)\sin\beta x$.
+				\item \textbf{Igualar:} Comparar los coeficientes del lado izquierdo contra los de $R(x)$ (término ausente se iguala a $0$).
+				\item \textbf{Resolver:} Despejar $\{C_n, C_{n+1}, \dots\}$ y sustituir sus valores numéricos en $y_p$.
+			\end{itemize}
+		\end{tcolorbox}
+		
+		\vspace{0.12cm}
+		
+		% Paso 3: Solución General Completa
+		\begin{tcolorbox}[
+			colback=notablue!8, colframe=notablue,
+			arc=2.5pt, boxrule=0.8pt, left=6pt, right=6pt, top=4pt, bottom=4pt
+			]
+			\footnotesize
+			\textbf{\color{notablue}Solución General}
+			\[
+			y(x) = y_c(x) + y_p(x)
+			\]
+			\centering\scriptsize
+			($y_c$: contiene las $n$ constantes arbitrarias $C_i$ \quad $\vert$ \quad $y_p$: valores numéricos fijos sin incógnitas)
+		\end{tcolorbox}
+		
+	\end{tcolorbox}
 	
 	\newpage
 
-	\section*{4. Variación de Parámetros}
+	\section*{Metodo Variación de Parámetros}
 	
 	\subsection*{Forma estándar de $y''$}
 	Para usar este método, la derivada mayor ($y''$) \textbf{debe estar con coeficiente $=$ 1}. Si tiene algún otro número o funcion multiplicandose, se divide toda la ecuación entre ese término:
