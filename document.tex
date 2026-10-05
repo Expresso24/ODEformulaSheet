@@ -6,6 +6,7 @@
 \usepackage{array}
 \usepackage[table]{xcolor}
 \usepackage{booktabs}
+\usepackage[most]{tcolorbox}
 
 \geometry{top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm}
 \pagestyle{empty}
@@ -13,6 +14,7 @@
 
 \definecolor{tableheader}{RGB}{30, 65, 110}   % Azul elegante
 \definecolor{rowgray}{RGB}{245, 247, 250}     % Gris muy tenue
+\definecolor{notablue}{RGB}{30, 100, 180} 
 
 \begin{document}
 	
@@ -22,13 +24,23 @@
 	
 	\vspace{0.3cm}
 	
-	\section*{1. Solución General}
+	\section*{0. Forma Canónica Requerida}
+	Este método aplica \textbf{únicamente} a ecuaciones lineales homogéneas con coeficientes constantes:
 	\[
-	y = y_c + y_p
+	\underbrace{a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_2 y'' + a_1 y' + a_0 y}_{\text{Ecuación diferencial lineal}} = \underbrace{0}_{R(x) = 0}
+	\]
+	donde $a_n, a_{n-1}, \dots, a_0 \in \mathbb{R}$ son constantes fijas con $a_n \neq 0$.
+	
+	
+	
+	\section*{1. Solución General}
+	Para una ecuación diferencial lineal homogénea de orden $n$:
+	\[
+	y = y_h = C_1 y_1 + C_2 y_2 + C_3 y_3 + C_4 y_4 + \dots + C_n y_n
 	\]
 	\begin{itemize}
-		\item $y_c$: Solución homogénea ($R(x) = 0$).
-		\item $y_p$: Solución particular debida a $R(x)$.
+		\item $C_1, C_2, \dots, C_n$: Constantes arbitrarias determinadas por las condiciones iniciales.
+		\item $\{y_1, y_2, y_3, y_4, \dots, y_n\}$: Conjunto fundamental de soluciones linealmente independientes.
 	\end{itemize}
 	
 	\hrulefill
@@ -63,16 +75,16 @@
 		\label{tab:solucion_complementaria}
 	\end{table}
 	
-	\vspace{0.1cm}
-	\noindent\textbf{Identificación para Variación de Parámetros:} Para orden 2, cada término que acompaña a una constante arbitraria define una función del conjunto fundamental:
-	\[
-	y_c = C_1 \mathbf{y_1} + C_2 \mathbf{y_2}
-	\]
-	
 	
 	\newpage
 	
 	\section*{3. Solución Particular $y_p$ (Coeficientes Indeterminados)}
+	
+	\subsection*{Forma Canónica No Homogénea}
+	Ecuación diferencial lineal con coeficientes constantes ($a_i \in \mathbb{R},\; a_n \neq 0$):
+	\[
+	\underbrace{a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_2 y'' + a_1 y' + a_0 y}_{\text{Parte lineal homogénea}} = \underbrace{R(x)}_{\substack{\text{Término no homogéneo} \\ (R(x) \neq 0)}}
+	\]
 	
 	Para proponer la forma de $y_p$ a partir de la función $R(x)$, se definen las siguientes variables:
 	\begin{itemize}
@@ -117,72 +129,109 @@
 		\caption{Formas de la solución particular $y_p$ para coeficientes indeterminados.}
 		\label{tab:coeficientes_indeterminados}
 	\end{table}
+
+	\begin{tcolorbox}[
+		enhanced,
+		colback=notablue!6,          % Fondo muy suave
+		colframe=notablue,          % Color del borde izquierdo
+		arc=3pt,                    % Esquinas sutilmente redondeadas
+		boxrule=0pt,                % Sin borde alrededor...
+		leftrule=3.5pt,             % ...excepto una barra lateral izquierda
+		top=4pt, bottom=4pt,        % Altura vertical compacta
+		left=7pt, right=7pt,
+		before skip=6pt, after skip=6pt
+		]
+		\small
+		\noindent\textbf{\color{notablue}Regla de duplicidad (Multiplicación por $x^s$):} Si algún término de $y_p$ ya aparece en la solución complementaria $y_c$, multiplica toda la familia de ese término por $x$ (o $x^2, \dots, x^s$) hasta eliminar cualquier repetición.
+		
+		\vspace{0.15cm}
+		\noindent\textit{Ejemplo:} Si $y_c = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$ y $R(x) = e^{\alpha x}\cos\beta x$:
+		\[
+		\implies y_p = x e^{\alpha x}\big(C_n\cos\beta x + C_{n+1}\sin\beta x\big)
+		\]
+	\end{tcolorbox}
 	
 	\vspace{0.2cm}
-	\noindent\textbf{Regla de duplicidad:} Si algún término de $y_p$ ya aparece en la solución complementaria $y_c$, multiplica toda la familia de ese término por $x$ (o $x^2$, $x^s$) hasta eliminar la repetición.\\
+	\noindent\textbf{Procedimiento de cálculo para $y_p$:}
+	\begin{enumerate}
+		\item \textbf{Derivar según el orden:} Derivar la propuesta ajustada $y_p$ sucesivamente tantas veces como lo indique el orden $n$ de la ecuación diferencial, calculando:
+		\[
+		y_p', \quad y_p'', \quad y_p''', \quad \dots, \quad y_p^{(n)}
+		\]
+		\item \textbf{Sustituir y formar el sistema:} Reemplazar $y_p$ y sus derivadas en el lado izquierdo de la ecuación diferencial original:
+		\[
+		a_n y_p^{(n)} + a_{n-1} y_p^{(n-1)} + \dots + a_1 y_p' + a_0 y_p = R(x)
+		\]
+		Agrupar los términos semejantes (potencias de $x$, exponenciales, senos y cosenos) e igualar sus coeficientes con los de $R(x)$ para resolver el sistema lineal y obtener los valores numéricos de las constantes ($C_n, C_{n+1}, \dots$).
+	\end{enumerate}
 	
-	
-	\textit{Ejemplo:} Si en $y_c = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$ y $R(x) = e^{\alpha x}\cos\beta x$:  
-	$\implies$ La propuesta estándar falla por duplicidad, por lo que se ajusta a:  
-	$y_p = x e^{\alpha x}\big(C_n\cos\beta x + C_{n+1}\sin\beta x\big)$.
-	
-	\newpage
-	
-	\section*{4. Variacion de parametros}
-	\subsection*{Paso 1: Forma estándar}
-	Dada la ecuación lineal de segundo orden:
+	\vspace{0.2cm}
+	\section*{4. Solución General Completa}
+	Una vez obtenidas la solución complementaria $y_c$ y la solución particular $y_p$, se ensambla la solución general sumando ambas expresiones:
 	\[
-	a_2(x)y'' + a_1(x)y' + a_0(x)y = g(x)
+	y = y_c + y_p
 	\]
-	Se divide entre $a_2(x)$ para normalizar el coeficiente principal:
-	\[
-	y'' + P(x)y' + Q(x)y = R(x) \quad \text{donde} \quad R(x) = \frac{g(x)}{a_2(x)}
-	\]
-	
-	\subsection*{Paso 2: Ecuación homogénea y conjunto fundamental}
-	Para coeficientes constantes, se resuelve la ecuación auxiliar asociada en $m$:
-	\[
-	a_2 m^2 + a_1 m + a_0 = 0
-	\]
-	Se obtiene la solución complementaria $y_c = c_1 y_1 + c_2 y_2$ según la naturaleza de las raíces:
 	\begin{itemize}
-		\item \textbf{Raíces reales distintas ($m_1 \neq m_2$):}
-		\[
-		y_c = c_1 e^{m_1 x} + c_2 e^{m_2 x} \implies y_1 = e^{m_1 x}, \quad y_2 = e^{m_2 x}
-		\]
-		\item \textbf{Raíz real repetida ($m_1 = m_2 = m$):}
-		\[
-		y_c = c_1 e^{mx} + c_2 x e^{mx} \implies y_1 = e^{mx}, \quad y_2 = x e^{mx}
-		\]
-		\item \textbf{Raíces complejas conjugadas ($m = \alpha \pm \beta i$):}
-		\[
-		y_c = c_1 e^{\alpha x}\cos(\beta x) + c_2 e^{\alpha x}\sin(\beta x) \implies y_1 = e^{\alpha x}\cos(\beta x), \quad y_2 = e^{\alpha x}\sin(\beta x)
-		\]
+		\item $y_c = C_1 y_1 + C_2 y_2 + \dots + C_n y_n$ (aporta las $n$ constantes arbitrarias).
+		\item $y_p$ (solución libre de constantes arbitrarias debida a $R(x)$).
 	\end{itemize}
 	
-	\subsection*{Paso 3: Cálculo del Wronskiano}
-	A partir de $y_1$ y $y_2$, se evalúa el determinante:
+	\newpage
+
+	\section*{4. Variación de Parámetros}
+	
+	\subsection*{Paso 1: Forma estándar de $y''$}
+	Para usar este método, la derivada mayor ($y''$) \textbf{debe estar con coeficiente $=$ 1}. Si tiene algún otro número o funcion multiplicandose, se divide toda la ecuación entre ese término:
+	
+	\[
+	\underbrace{\mathbf{a_2(x)} y'' + a_1(x) y' + a_0(x) y}_{\substack{\text{Ecuación original} \\ (a_i(x) \text{ son funciones/coeficientes})}} = g(x)
+	\quad\xrightarrow{\div\, a_2(x)}\quad
+	\underbrace{\mathbf{1}y'' + P(x)y' + Q(x)y}_{\text{Derivada mayor con coeficiente 1}} = \underbrace{R(x)}_{\substack{\frac{g(x)}{a_2(x)} \\ \text{(Término para el sistema)}}}
+	\]
+	
+	\subsection*{Paso 2: Propuesta parametrica}
+	A diferencia del método de coeficientes indeterminados, en variación de parámetros \textbf{no se propone una función externa arbitraria} para $y_p$. La propuesta conserva exactamente la base de la solución complementaria:
+	\[
+	y_c = \underbrace{C_1}_{\text{constante}} y_1(x) \;+\; \underbrace{C_2}_{\text{constante}} y_2(x)
+	\]
+	y consiste únicamente en \textit{variar} las constantes haciéndolas depender de $x$:
+	\[
+	C_1 \;\longmapsto\; A(x), \qquad C_2 \;\longmapsto\; B(x)
+	\]
+	quedando la propuesta estructuralmente emparejada:
+	\[
+	y_p = \underbrace{A(x)}_{\substack{\text{parámetro variable} \\ (C_1 \to A(x))}} y_1(x) \;+\; \underbrace{B(x)}_{\substack{\text{parámetro variable} \\ (C_2 \to B(x))}} y_2(x)
+	\]
+
+	
+	\subsection*{Paso 3: Determinación de los parámetros $A(x)$ y $B(x)$}
+	El Wronskiano de la base fundamental $\{y_1, y_2\}$ es:
+	\vspace{0.5cm}
 	\[
 	W(y_1, y_2) = \begin{vmatrix} y_1 & y_2 \\ y_1' & y_2' \end{vmatrix} = y_1 y_2' - y_1' y_2 \quad (W \neq 0)
 	\]
 	
-	\subsection*{Paso 4: Determinación de $u_1$ y $u_2$}
-	Aplicación directa de las fórmulas integrales (sin constantes de integración):
+	\vspace{0.5cm}
+	Por regla de Cramer, integrando directamente (\textit{sin constantes de integración}):
+	
+	\vspace{0.5cm}
+	
 	\[
-	u_1 = -\int \frac{y_2 \cdot R(x)}{W} \, dx
-	\]
-	\[
-	u_2 = \int \frac{y_1 \cdot R(x)}{W} \, dx
+	A(x) = -\int \frac{y_2 \cdot R(x)}{W} \, dx, \qquad \qquad \qquad B(x) = \int \frac{y_1 \cdot R(x)}{W} \, dx
 	\]
 	
-	\subsection*{Paso 5: Solución particular y general}
-	La solución particular se define como:
+	\vspace{0.5cm}
+	
+	
+	
+	\subsection*{Paso 4: Solución particular y general}
+	La solución particular se ensambla como:
 	\[
-	y_p = u_1 y_1 + u_2 y_2
+	y_p = A(x) y_1 + B(x) y_2
 	\]
 	La solución general completa del sistema es:
 	\[
-	y = y_c + y_p = c_1 y_1 + c_2 y_2 + u_1 y_1 + u_2 y_2
+	y = y_c + y_p = C_1 y_1 + C_2 y_2 + A(x) y_1 + B(x) y_2
 	\]
 	
 \end{document}
