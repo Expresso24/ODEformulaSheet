@@ -264,8 +264,10 @@
 	A(x) = -\int \frac{y_2 \cdot R(x)}{W} \, dx, \qquad \qquad \qquad B(x) = \int \frac{y_1 \cdot R(x)}{W} \, dx
 	\]
 	
+	
 	\vspace{0.5cm}
 	
+	\# No olvidar que $A(x)$ lleva signo negativo fuera de la integral
 	
 	
 	\subsection*{Solución particular y general}
@@ -276,6 +278,90 @@
 	La solución general completa del sistema es:
 	\[
 	y = y_c + y_p = C_1 y_1 + C_2 y_2 + A(x) y_1 + B(x) y_2
+	\]
+	
+	\newpage
+	
+	\section*{Método Variación de Parámetros (Solo para ED de orden 3, osea $y'''$)}
+	
+	\subsection*{Forma estándar de $y'''$}
+	La derivada mayor ($y'''$) \textbf{debe tener coeficiente $=1$}. Si no, se divide toda la ecuación entre su coeficiente:
+	
+	\[
+	\underbrace{a_3(x)y'''+a_2(x)y''+a_1(x)y'+a_0(x)y}_{\text{Ecuación original}}
+	=g(x)
+	\quad\xrightarrow{\div\,a_3(x)}\quad
+	\underbrace{y'''+P(x)y''+Q(x)y'+S(x)y}_{\text{Forma estándar}}
+	=\underbrace{R(x)}_{\frac{g(x)}{a_3(x)}}
+	\]
+	
+	\subsection*{Propuesta paramétrica}
+	Se conservan las funciones de la solución complementaria y se hacen variables sus constantes:
+	
+	\[
+	y_c=C_1y_1+C_2y_2+C_3y_3
+	\]
+	
+	\[
+	y_p=A(x)y_1+B(x)y_2+C(x)y_3
+	\]
+	
+	\subsection*{Wronskiano}
+	\[
+	W=
+	\begin{vmatrix}
+		y_1&y_2&y_3\\
+		y_1'&y_2'&y_3'\\
+		y_1''&y_2''&y_3''
+	\end{vmatrix}
+	\neq0
+	\]
+	
+	Para ahorrar tiempo, puede calcularse directamente:
+	
+	\[
+	W=
+	y_1''(y_2y_3'-y_3y_2')
+	-y_2''(y_1y_3'-y_3y_1')
+	+y_3''(y_1y_2'-y_2y_1')
+	\]
+	
+	\subsection*{Determinación de $A(x)$, $B(x)$ y $C(x)$}
+	\textbf{Sin constantes de integración:}
+	
+	\[
+	A(x)=
+	\int
+	\frac{(y_2y_3'-y_3y_2')R(x)}{W}\,dx	
+	\]
+	
+	\[
+	B(x)=
+	-\int
+	\frac{(y_1y_3'-y_3y_1')R(x)}{W}\,dx
+	\]
+	
+	\[
+	C(x)=
+	\int
+	\frac{(y_1y_2'-y_2y_1')R(x)}{W}\,dx
+	\]
+	
+	\[
+	\boxed{\text{Mucho ojo con los Signos, cuate: }\quad +\;,\;-\;,\;+}
+	\]
+	
+	La integral $B(x)$ siempre lleva signo negativo fuera de la integral $- \int$!!! UwU
+	
+	\subsection*{Solución particular y general}
+	
+	\[
+	y_p=Ay_1+By_2+Cy_3
+	\]
+	
+	\[
+		y=y_c+y_p
+		=C_1y_1+C_2y_2+C_3y_3+Ay_1+By_2+Cy_3
 	\]
 	
 \end{document}
