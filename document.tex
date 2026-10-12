@@ -367,6 +367,42 @@
 	\newpage
 	
 	\section*{Ecuaciones Cauchy Euler Homogeneas}
+	Este método aplica \textbf{únicamente} a ecuaciones diferenciales donde cada término con derivada está multiplicado por una potencia de $x$ cuyo grado coincide exactamente con el orden de dicha derivada:
+	\[
+	\underbrace{a_n x^n y^{(n)} + a_{n-1} x^{n-1} y^{(n-1)} + \dots + a_1 x y' + a_0 y}_{\text{Ecuación de Cauchy-Euler homogénea}} = \underbrace{0}_{R(x) = 0}
+	\]
+	donde $a_n, a_{n-1}, \dots, a_0 \in \mathbb{R}$ son constantes fijas con $a_n \neq 0$.
+	
+	\subsection*{Sustitución y Ecuación Auxiliar}
+	
+	Se propone la solución $y = x^m$. Al sustituir esta expresión y sus derivadas (Cuadro \ref{tab:derivadas_cauchy}), cada término $x^k y^{(k)}$ permite extraer $x^m$ como factor común. 
+	
+	Al factorizar $x^m$, la ecuación se convierte en un polinomio en $m$ llamado ecuación auxiliar, cuyas raíces definen la solución general.
+	
+	\begin{table}[!ht]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+		\setlength{\tabcolsep}{10pt}
+		\begin{tabular}{r >{$}l<{$} >{$}l<{$}}
+			\rowcolor{tableheader}
+			\multicolumn{1}{c}{\bfseries\color{white}\#} &
+			\multicolumn{1}{l}{\bfseries\color{white} Derivada propuesta ($y = x^m$)} &
+			\multicolumn{1}{l}{\bfseries\color{white} Forma factorizada de los coeficientes} \\
+			\midrule
+			0 & y = x^m & 1 \\
+			\rowcolor{rowgray}
+			1 & y' = m x^{m-1} & m \\
+			2 & y'' = m(m-1) x^{m-2} & m(m-1) \\
+			\rowcolor{rowgray}
+			3 & y''' = m(m-1)(m-2) x^{m-3} & m(m-1)(m-2) \\
+			4 & y^{(4)} = m(m-1)(m-2)(m-3) x^{m-4} & m(m-1)(m-2)(m-3) \\
+			\bottomrule
+		\end{tabular}
+		\caption{Derivadas sucesivas y sus expresiones factorizadas al sustituir en ecuaciones de Cauchy-Euler homogéneas.}
+		\label{tab:derivadas_cauchy}
+	\end{table}
+	
+	
 	
 	\subsection*{Polinomio Auxiliar y Solución Complementaria $y_c$ (Cauchy-Euler)}
 	
@@ -391,13 +427,13 @@
 			5 & m = \pm \beta i \text{ (imaginarias puras, } \alpha = 0\text{)} & C_1 \cos(\beta \ln x) + C_2 \sin(\beta \ln x) \\
 			\rowcolor{rowgray}
 			6 & m = \alpha \pm \beta i \text{ (complejas conjugadas)} & x^{\alpha}\big(C_1 \cos(\beta \ln x) + C_2 \sin(\beta \ln x)\big) \\
-			7 & m = \alpha \pm \beta i \text{ (repetidas } k \text{ veces)} & x^{\alpha}\Big[\big(C_1 + \dots + C_k (\ln x)^{k-1}\big)\cos(\beta \ln x) + \big(C_{k+1} + \dots + C_{2k} (\ln x)^{k-1}\big)\sin(\beta \ln x)\Big] \\
 			\bottomrule
 		\end{tabular}
 		\caption{Formas de la solución complementaria $y_c$ para ecuaciones Cauchy-Euler homogéneas según las raíces de la ecuación auxiliar.}
 		\label{tab:solucion_complementaria_cauchy}
 	\end{table}
 	
+	\newpage
 	
 	
 \end{document}
