@@ -1,4 +1,5 @@
-Bienvenido a mi repositorio local de formularios de ecuaciones diferenciales
+Formulario Ecuaciones Diferenciales
 
-Este repositorio se encarga de gestionar las versiones de los formularios de la materia de ecuaciones
-diferenciales
+
+
+MARQUEZ GUTIERREZ MANUEL
